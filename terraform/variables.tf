@@ -1,5 +1,5 @@
 variable project {
-  description = "infra-179515"
+  description = "Project ID"
 }
 
 variable region {
@@ -8,13 +8,13 @@ variable region {
 }
 
 variable public_key_path {
-  description = "C:/Users/alsug/.ssh/appuser.pub"
+  description = "Path to public key"
 }
 
 variable disk_image {
-  description = "reddit-base-1505060019"
+  description = "Disk image"
 }
 
 variable private_key_path {
-  description = "C:/Users/alsug/.ssh/appuser"
+  description = "Path to private key"
 }
