@@ -9,7 +9,8 @@ resource "google_compute_instance" "db" {
       image = "${var.db_disk_image}"
     }
   }
-# определение сетевого интерфейса
+
+  # определение сетевого интерфейса
   network_interface {
     # сеть, к которой присоединить данный интерфейс
     network = "default"
@@ -17,6 +18,7 @@ resource "google_compute_instance" "db" {
     # использовать ephemeral IP для доступа из Интернет
     access_config {}
   }
+
   metadata {
     sshKeys = "appuser:${file(var.public_key_path)}"
   }
@@ -25,13 +27,13 @@ resource "google_compute_instance" "db" {
 }
 
 resource "google_compute_firewall" "firewall_mongo" {
-	name = "allow-mongo-default"
-	network="default"
-	
-	allow {
-		protocol = "tcp"
-		ports = ["27017"]
-	}
-	
-	target_tags = ["reddit-db"]
+  name    = "allow-mongo-default"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["27017"]
+  }
+
+  target_tags = ["reddit-db"]
 }

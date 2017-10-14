@@ -9,24 +9,27 @@ resource "google_compute_instance" "app" {
       image = "${var.app_disk_image}"
     }
   }
-# определение сетевого интерфейса
+
+  # определение сетевого интерфейса
   network_interface {
     # сеть, к которой присоединить данный интерфейс
     network = "default"
 
     # использовать ephemeral IP для доступа из Интернет
     access_config {
-		nat_ip = "${google_compute_address.app_ip.address}"
-		}
+      nat_ip = "${google_compute_address.app_ip.address}"
+    }
   }
+
   metadata {
     sshKeys = "appuser:${file(var.public_key_path)}"
   }
 
   tags = ["reddit-app"]
 }
+
 resource "google_compute_address" "app_ip" {
-	name = "reddit-app-ip"
+  name = "reddit-app-ip"
 }
 
 resource "google_compute_firewall" "firewall_puma" {
