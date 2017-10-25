@@ -35,9 +35,9 @@
 
     - name: Fetch the latest version of application code
       git:
-        repo: 'https://github.com/aelzhanova/infra'
+        repo: 'https://github.com/Artemmkin/reddit.git'
         dest: /home/appuser/reddit
-        version: ansible-2
+        version: monolith
       tags: deploy-tag
       notify: restart puma
 
